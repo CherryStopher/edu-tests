@@ -1,8 +1,63 @@
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from .models import Student
+from .models import Student, Test, Question, Alternative
 
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = "__all__"
+
+class AlternativeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alternative
+        fields = ['id', 'content', 'correct']
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    alternatives = AlternativeSerializer(many=True)  # Includes alternatives such as nested serializers
+    tagType = serializers.CharField(source='tag_type') # Maps tagType (json) to tag_type (model)
+    
+    class Meta:
+        model = Question
+        fields = ['id', 'statement', 'explanation', 'score', 'tagType', 'alternatives']
+        
+        
+    def validate_alternatives(self, value):
+        # Ensure the question has between 1 and 5 alternatives
+        if not (1 <= len(value) <= 5):
+            raise ValidationError("Each question must have between 1 and 5 alternatives.")
+        
+        # Ensure exactly one correct alternative
+        correct_count = sum([alternative['correct'] for alternative in value])
+        if correct_count != 1:
+            raise ValidationError("Each question must have exactly one correct alternative.")
+        
+        return value
+
+
+class TestSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True)  # Include the questions as nested serializers
+    
+    class Meta:
+        model = Test
+        fields = ['id', 'name', 'questions']
+    
+        
+    def create(self, validated_data):
+        """
+        Creates the Test with questions and alternatives, since they are nested.
+        """
+        questions_data = validated_data.pop('questions')
+        test = Test.objects.create(**validated_data)
+        
+        for question_data in questions_data:
+            alternatives_data = question_data.pop('alternatives')
+            question = Question.objects.create(test=test, **question_data)
+            
+            for alternative_data in alternatives_data:
+                Alternative.objects.create(question=question, **alternative_data)
+        
+        return test
+    
+    

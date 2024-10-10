@@ -18,12 +18,12 @@ class Question(models.Model):
     explanation = models.TextField(blank=True, null=True)
     score = models.FloatField()
     tag_type = models.CharField(max_length=50, choices=TagEnum.choices)
-    test = models.ForeignKey(Test, on_delete=models.CASCADE) # One to many
+    test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='questions') # One to many
     
     
 class Alternative(models.Model):
     content = models.CharField(max_length=200)
     correct = models.BooleanField(default=False)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE) # One to many
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='alternatives') # One to many
     
 
