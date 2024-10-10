@@ -16,3 +16,9 @@ python manage.py migrate
 
 # Loadfixtures
 python manage.py loaddata fixtures/fixtures.json
+
+#  Create superuser
+if [[ $CREATE_SUPERUSER ]];
+then
+  python manage.py createsuperuser --no-input
+fi
