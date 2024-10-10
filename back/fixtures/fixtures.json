@@ -78,5 +78,211 @@
       "rut": "01234567-8",
       "name": "Julia Rodríguez"
     }
+  },
+  {
+    "model": "api.test",
+    "pk": 1,
+    "fields": {
+      "name": "Prueba de Matemáticas"
+    }
+  },
+  {
+    "model": "api.question",
+    "pk": 1,
+    "fields": {
+      "statement": "¿Cuál es el resultado de 2 + 2?",
+      "explanation": "Suma básica de dos números.",
+      "score": 1,
+      "tag_type": "Números",
+      "test": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 1,
+    "fields": {
+      "content": "3",
+      "correct": false,
+      "question": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 2,
+    "fields": {
+      "content": "4",
+      "correct": true,
+      "question": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 3,
+    "fields": {
+      "content": "5",
+      "correct": false,
+      "question": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 4,
+    "fields": {
+      "content": "2",
+      "correct": false,
+      "question": 1
+    }
+  },
+  {
+    "model": "api.question",
+    "pk": 2,
+    "fields": {
+      "statement": "¿Cuál es la capital de Francia?",
+      "explanation": "Pregunta de conocimiento general.",
+      "score": 1,
+      "tag_type": "Geometría",
+      "test": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 5,
+    "fields": {
+      "content": "Madrid",
+      "correct": false,
+      "question": 2
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 6,
+    "fields": {
+      "content": "París",
+      "correct": true,
+      "question": 2
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 7,
+    "fields": {
+      "content": "Berlín",
+      "correct": false,
+      "question": 2
+    }
+  },
+  {
+    "model": "api.question",
+    "pk": 3,
+    "fields": {
+      "statement": "¿Cuál es la fórmula del área de un círculo?",
+      "explanation": "Fórmula básica de geometría.",
+      "score": 1,
+      "tag_type": "Geometría",
+      "test": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 8,
+    "fields": {
+      "content": "πr^2",
+      "correct": true,
+      "question": 3
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 9,
+    "fields": {
+      "content": "2πr",
+      "correct": false,
+      "question": 3
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 10,
+    "fields": {
+      "content": "πd",
+      "correct": false,
+      "question": 3
+    }
+  },
+  {
+    "model": "api.question",
+    "pk": 4,
+    "fields": {
+      "statement": "Resolver x en la ecuación: 2x + 3 = 7",
+      "explanation": "Ejercicio básico de álgebra.",
+      "score": 1,
+      "tag_type": "Álgebra y Funciones",
+      "test": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 11,
+    "fields": {
+      "content": "x = 1",
+      "correct": false,
+      "question": 4
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 12,
+    "fields": {
+      "content": "x = 2",
+      "correct": true,
+      "question": 4
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 13,
+    "fields": {
+      "content": "x = 3",
+      "correct": false,
+      "question": 4
+    }
+  },
+  {
+    "model": "api.question",
+    "pk": 5,
+    "fields": {
+      "statement": "¿Cuál es la probabilidad de sacar un as de un mazo de cartas?",
+      "explanation": "Cálculo de probabilidad simple.",
+      "score": 1,
+      "tag_type": "Probabilidad y Estadísticas",
+      "test": 1
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 14,
+    "fields": {
+      "content": "1/52",
+      "correct": false,
+      "question": 5
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 15,
+    "fields": {
+      "content": "1/13",
+      "correct": true,
+      "question": 5
+    }
+  },
+  {
+    "model": "api.alternative",
+    "pk": 16,
+    "fields": {
+      "content": "1/26",
+      "correct": false,
+      "question": 5
+    }
   }
 ]
