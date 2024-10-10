@@ -23,8 +23,9 @@ def create_test(request):
             test = Test(name=data['name'])
             try:
                 test.full_clean()  # Validate the test data
-            except ValidationError:
-                raise ValidationError("Error validating the test. Please check the test data.")
+                test.save()
+            except ValidationError as e:
+                raise ValidationError(f"Error validating the test. Please check the test data: {e}")
             
             # Create questions
             questions = []
@@ -34,14 +35,14 @@ def create_test(request):
                     explanation=question_data.get('explanation', ''),
                     score=float(question_data['score']),
                     tag_type=question_data['tagType'],
-                    test=test  # Associate the question with the test
+                    test=test  # Asociate to the test
                 )
                 try:
                     question.full_clean()  # Validate that the fields are correct
-                except ValidationError as e:
-                    print(f"Validation error for question ID {question_data.get('id', 'unknown')}: {e}")  # Log the error
-                    raise ValidationError(f"Error validating question with ID: {question_data.get('id', 'unknown')}") # unknown if id doesn't exists
-
+                    question.save()
+                except ValidationError as e: # We use ValidationError for the correct transaction rollback 
+                    raise ValidationError(f"Error validating question with ID {question_data.get('id', 'unknown')}: {e}")  # unknown if id doesn't exist
+                
                 
                 # Create the alternatives
                 alternatives = question_data['alternatives']
@@ -55,8 +56,6 @@ def create_test(request):
                 if correct_count != 1:
                     raise ValidationError(f"Question with ID: {question_data.get('id', 'unknown')} must have exactly 1 correct alternative.")
                 
-                alternative_objects = []
-                
                 for alternative_data in alternatives:
                     alternative = Alternative(
                         content=alternative_data['content'],
@@ -65,23 +64,13 @@ def create_test(request):
                     )
                     try:
                         alternative.full_clean()  # Validate the alternative fields
-                    except ValidationError:
-                        raise ValidationError(f"Error validating alternative with ID: {alternative_data.get('id', 'unknown')}")  # unknown if id doesn't exists
+                        alternative.save()
+                    except ValidationError as e:
+                        raise ValidationError(f"Error validating alternative with ID {alternative_data.get('id', 'unknown')}: {e}")  # unknown if id doesn't exists
                     
-                    alternative_objects.append(alternative)
-                
-                questions.append((question, alternative_objects))  # Store question and alternatives for the saving
-            
-            # Validations passed
-            test.save()
-            
-            # Save questions and answers
-            for question, alternatives in questions:
-                question.save()
-                for alternative in alternatives:
-                    alternative.save()
 
-            return Response({"message": f"Test created successfully. Test ID: {test.id}"}, status=status.HTTP_201_CREATED)
+
+            return Response({"message": f"Test created successfully. Test ID {test.id}"}, status=status.HTTP_201_CREATED)
     except ValidationError as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:

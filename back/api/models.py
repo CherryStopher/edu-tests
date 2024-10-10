@@ -5,10 +5,10 @@ class Student(models.Model):
     rut = models.CharField(max_length=20)
     
 class TagEnum(models.TextChoices):
-    NUMBERS = 'Numeros', 'Numeros'
-    GEOMETRY = 'Geometria', 'Geometria'
-    ALGEBRA_FUNCTIONS = 'Algebra y Funciones', 'Álgebra y Funciones'
-    PROBABILITY_STATISTICS = 'Probabilidad y Estadisticas', 'Probabilidad y Estadísticas'
+    NUMBERS = 'Números', 'Números'
+    GEOMETRY = 'Geometría', 'Geometría'
+    ALGEBRA_FUNCTIONS = 'Álgebra y Funciones', 'Álgebra y Funciones'
+    PROBABILITY_STATISTICS = 'Probabilidad y Estadísticas', 'Probabilidad y Estadísticas'
 
 class Test(models.Model):
     name = models.CharField(max_length=200)
