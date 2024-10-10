@@ -81,14 +81,6 @@ WSGI_APPLICATION = "eduapi.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default='sqlite:///db.sqlite3',
-#         conn_max_age=600
-#     )
-# }
 
 DATABASES = {
     'default': dj_database_url.parse("postgresql://edutestspg_user:RaABqpadynwhAdGubNVoxRSwZz0Tk2iE@dpg-cs3h89o8fa8c73dc25lg-a.oregon-postgres.render.com/edutestspg")

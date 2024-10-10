@@ -1,0 +1,82 @@
+[
+  {
+    "model": "api.student",
+    "pk": 1,
+    "fields": {
+      "rut": "12345678-9",
+      "name": "Juan Pérez"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 2,
+    "fields": {
+      "rut": "23456789-0",
+      "name": "Ana Gómez"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 3,
+    "fields": {
+      "rut": "34567890-1",
+      "name": "Carlos Ruiz"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 4,
+    "fields": {
+      "rut": "45678901-2",
+      "name": "Daniela Martínez"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 5,
+    "fields": {
+      "rut": "56789012-3",
+      "name": "Eduardo Hernández"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 6,
+    "fields": {
+      "rut": "67890123-4",
+      "name": "Fernanda López"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 7,
+    "fields": {
+      "rut": "78901234-5",
+      "name": "Gustavo Morales"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 8,
+    "fields": {
+      "rut": "89012345-6",
+      "name": "Helena Jiménez"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 9,
+    "fields": {
+      "rut": "90123456-7",
+      "name": "Iván Castillo"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 10,
+    "fields": {
+      "rut": "01234567-8",
+      "name": "Julia Rodríguez"
+    }
+  }
+]
