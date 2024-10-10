@@ -6,6 +6,7 @@ from .views import create_test
 router = routers.DefaultRouter()
 router.register(r"students", views.StudentViewSet)
 
-urlpatterns = [ 
+urlpatterns = [
+    path("", include(router.urls)), 
     path('test/', create_test, name='create_test')
     ]
