@@ -1,0 +1,2 @@
+- Si la creacion de alguna pregunta falla, o de alguna alternativa, no se crea naada de lo mencionado.
+- Se le deja a Django la creación de ID para las pruebas, preguntas y alternativas.
