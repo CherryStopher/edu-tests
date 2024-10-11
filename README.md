@@ -1,8 +1,10 @@
 # Edu Tests
 
+![](https://elcomercio.pe/resizer/v2/6Y2EDIISGFGVFANEVDCR5LCG34.jpg?auth=f58b5c647a09717054d85bb8b9a6bc624bfcb14fe9c60b5246730ea6a513e2b0&width=1200&height=810&quality=90&smart=true)
+
 ## Descripción
 
-Edu Tests es una aplicación diseñada para la gestión de pruebas y evaluaciones. Permite crear pruebas con preguntas y alternativas, asignar estudiantes a las pruebas, asignar respuestas de los estudiantes y obtener los puntajes obtenidos de ellos en cada prueba.
+Edu Tests es una aplicación diseñada para la gestión de pruebas y evaluaciones. Permite crear pruebas con preguntas y sus respectivas alternativas, asignar estudiantes a las pruebas, asignar respuestas de los estudiantes y obtener los puntajes obtenidos por ellos en cada prueba.
 
 ## Requisitos (para ejecutar en local)
 
