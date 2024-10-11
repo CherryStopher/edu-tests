@@ -99,7 +99,17 @@ def create_test(request):
 @api_view(["POST"])
 def assign_test(request, test_id):
     test = Test.objects.get(id=test_id)
-    students_data = request.data.get("students", [])  # [] if there are no students
+    students_data = request.data.get("students", None)  # None if there are no students
+
+    if not isinstance(students_data, list):
+        return Response(
+            {
+                "status": "Error",
+                "message": "Invalid data structure. 'students' must be a list.",
+                "id": "",
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
     # Query the DB to get the students with that ID
     students = Student.objects.filter(id__in=students_data)
@@ -112,12 +122,7 @@ def assign_test(request, test_id):
     # If students data is empty, the json fields are incorrect or all students don't exist
     if not students_data or not existing_student_ids:
         return Response(
-            {
-                "status": "Error",
-                "message": "No students provided.",
-                "success": [],
-                "error": [],
-            },
+            {"status": "Error", "message": "No students provided.", "id": ""},
             status=status.HTTP_400_BAD_REQUEST,
         )
 
@@ -126,15 +131,23 @@ def assign_test(request, test_id):
             for student in students:
                 StudentTest.objects.get_or_create(student=student, test=test)
 
-        # Custom messagge if there is an error
-        messagge = "Some students don't exist." if not_found_ids else ""
+        # Return 207 Multi-Status if there were errors
+        if not_found_ids:
+            return Response(
+                {
+                    "status": "Partial Success",
+                    "message": "Some students don't exist.",
+                    "success": existing_student_ids,
+                    "error": not_found_ids,
+                },
+                status=status.HTTP_207_MULTI_STATUS,
+            )
 
         return Response(
             {
                 "status": "Ok",
-                "messagge": messagge,
                 "success": existing_student_ids,
-                "error": not_found_ids,
+                "error": [],
             },
             status=status.HTTP_201_CREATED,
         )
@@ -142,11 +155,10 @@ def assign_test(request, test_id):
         return Response(
             {
                 "status": "Error",
-                "message": str(e),
-                "success": existing_student_ids,
-                "error": not_found_ids,
+                "message": f"An unexpected error occurred: {str(e)}",
+                "id": "",
             },
-            status=status.HTTP_400_BAD_REQUEST,
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
 
@@ -154,7 +166,20 @@ def assign_test(request, test_id):
 @api_view(["POST", "GET"])
 def manage_test_scores(request, test_id):
     if request.method == "POST":
-        students_data = request.data.get("students", [])  # [] if there are no students
+        students_data = request.data.get(
+            "students", None
+        )  # None if there are no students
+
+        # Check if 'students' is a valid list
+        if not isinstance(students_data, list):
+            return Response(
+                {
+                    "status": "Error",
+                    "message": "Invalid data structure. 'students' must be a list.",
+                    "id": "",
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         success_ids = []
         error_ids = []
@@ -194,7 +219,7 @@ def manage_test_scores(request, test_id):
                         skipped_questions += 1
                         continue  # Skip to the next question if not answered
 
-                    # Get the student's answer for the current question
+                    # Get the number of the student's answer for the current question
                     for student_question in student_questions:
                         if student_question.get("id") == str(question_id):
                             student_answer = student_question.get("answer")
@@ -233,12 +258,12 @@ def manage_test_scores(request, test_id):
         if error_ids:
             return Response(
                 {
-                    "status": "Error",
+                    "status": "Partial Success",
                     "message": "Some students don't exist.",
                     "success": success_ids,
                     "error": error_ids,
                 },
-                status=status.HTTP_400_BAD_REQUEST,
+                status=status.HTTP_207_MULTI_STATUS,  # Set to 207 for partial success
             )
 
         return Response(
