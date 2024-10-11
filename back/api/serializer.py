@@ -62,11 +62,7 @@ class TestSerializer(serializers.ModelSerializer):
             question = Question.objects.create(test=test, **question_data)
 
             for alternative_data in alternatives_data:
-                Alternative.objects.create(
-                    question=question,
-                    answer_number=alternative_data["id"],
-                    **alternative_data
-                )
+                Alternative.objects.create(question=question, **alternative_data)
 
         return test
 

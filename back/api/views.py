@@ -14,6 +14,39 @@ class StudentViewSet(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
 
 
+# Get all tests
+@api_view(["GET"])
+def get_tests(request):
+    try:
+        tests = Test.objects.all()  # Get all tests
+        serializer = TestSerializer(tests, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response(
+            {"status": "Error", "message": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+
+
+# Get single test by ID
+@api_view(["GET"])
+def get_test_by_id(request, test_id):
+    try:
+        test = Test.objects.get(id=test_id)  # Search by id
+        serializer = TestSerializer(test)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Test.DoesNotExist:
+        return Response(
+            {"status": "Error", "message": "Test not found."},
+            status=status.HTTP_404_NOT_FOUND,
+        )
+    except Exception as e:
+        return Response(
+            {"status": "Error", "message": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+
+
 # Create test
 @api_view(["POST"])
 def create_test(request):
