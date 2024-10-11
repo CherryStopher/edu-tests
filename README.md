@@ -39,18 +39,19 @@ Edu Tests es una aplicación diseñada para la gestión de pruebas y evaluacione
 
 ## Consideraciones y suposiciones
 
-1. Por simplicidad, no se implementaron métodos `PUT` ni `DELETE`.
-2. Si la creación de alguna pregunta o de alguna alternativa falla, **no se crea nada** de lo mencionado.
-3. Se deja a Django la asignación de IDs para las pruebas, preguntas y alternativas.
-4. La explicación de la pregunta puede ser vacía, pues puede no ser necesaria en la prueba.
-5. EL ID de las respuestas del enunciado fue cambiado a `answer_number`, que corresponde al número de respuesta relativo a la pregunta. Eso se hizo así para hacerlo calzar más fácilmente cuando se asignen las respuestas de un estudiante.
-6. Cada pregunta debe tener entre 1 y 5 alternativas, si no, arroja error.
-7. Si el estudiante eligió, por ejemplo, la alternativa 5, pero la pregunta tiene 3 alternativas, se cuenta como que **no la respondió**.
-8. Si en la asignación de estudiantes a pruebas o en la asignación de alternativas hay algunos que funcionan y otros que fallan, se optó por usar un _207 Multi Status_ en vez de arrojar error, pues los alumnos que sí existían, sí se asignaron.
-9. Si se asignan respuestas a alumnos que
-10. Se hicieron un par de validaciones cuando se asignan las respuestas, pero no todas por simplicidad del código (Iba a quedar muy engorroso si se validaban todos los campos, pero lo tuve en cuenta).
-11. En django está instalada la librería `django-cors-headers` que se usa para poder conectarse a la api desde un frontend. De hecho está incluida la ruta `http://localhost:5173` por si en un futuro se desea realizar un front para la aplicación. Si ese front es desplegado, se debe agregar la ruta a `CORS_ORIGIN_WHITELIST` en el archivo `settings.py`.
-12. Pensé en hacer un frontend pero en honor al tiempo no lo hice.
+1. Como está hosteado en Render, si pasa mucho tiempo inactivo se demorará en reactivarse, aproximadamente 1 minuto para que empiece a funcionar la API. Cualquier cosa, contactarme para reiniciar el server!
+2. Por simplicidad, no se implementaron métodos `PUT` ni `DELETE`.
+3. Si la creación de alguna pregunta o de alguna alternativa falla, **no se crea nada** de lo mencionado.
+4. Se deja a Django la asignación de IDs para las pruebas, preguntas y alternativas.
+5. La explicación de la pregunta puede ser vacía, pues puede no ser necesaria en la prueba.
+6. EL ID de las respuestas del enunciado fue cambiado a `answer_number`, que corresponde al número de respuesta relativo a la pregunta. Eso se hizo así para hacerlo calzar más fácilmente cuando se asignen las respuestas de un estudiante.
+7. Cada pregunta debe tener entre 1 y 5 alternativas, si no, arroja error.
+8. Si el estudiante eligió, por ejemplo, la alternativa 5, pero la pregunta tiene 3 alternativas, se cuenta como que **no la respondió**.
+9. Si en la asignación de estudiantes a pruebas o en la asignación de alternativas hay algunos que funcionan y otros que fallan, se optó por usar un _207 Multi Status_ en vez de arrojar error, pues los alumnos que sí existían, sí se asignaron.
+10. Si se asignan respuestas a alumnos que
+11. Se hicieron un par de validaciones cuando se asignan las respuestas, pero no todas por simplicidad del código (Iba a quedar muy engorroso si se validaban todos los campos, pero lo tuve en cuenta).
+12. En django está instalada la librería `django-cors-headers` que se usa para poder conectarse a la api desde un frontend. De hecho está incluida la ruta `http://localhost:5173` por si en un futuro se desea realizar un front para la aplicación. Si ese front es desplegado, se debe agregar la ruta a `CORS_ORIGIN_WHITELIST` en el archivo `settings.py`.
+13. Pensé en hacer un frontend pero en honor al tiempo no lo hice.
 
 ## Organización de archivos
 
