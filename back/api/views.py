@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from .serializer import StudentSerializer, TestSerializer
+from .serializers import StudentSerializer, TestSerializer
 from .models import Question, Student, StudentTest, Test
 
 from rest_framework.decorators import api_view

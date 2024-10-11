@@ -42,10 +42,23 @@ Edu Tests es una aplicación diseñada para la gestión de pruebas y evaluacione
 3. Se deja a Django la asignación de IDs para las pruebas, preguntas y alternativas.
 4. La explicación de la pregunta puede ser vacía, pues puede no ser necesaria en la prueba.
 5. EL ID de las respuestas del enunciado fue cambiado a `answer_number`, que corresponde al número de respuesta relativo a la pregunta. Eso se hizo así para hacerlo calzar más fácilmente cuando se asignen las respuestas de un estudiante.
-6. Si el estudiante eligió, por ejemplo, la alternativa 5, pero la pregunta tiene 3 alternativas, se cuenta como que **no la respondió**.
-7. Si en la asignación de estudiantes a pruebas o en la asignación de alternativas hay algunos que funcionan y otros que fallan, se optó por usar un _207 Multi Status_ en vez de arrojar error, pues los alumnos que sí existían, sí se asignaron.
-8. Se hicieron un par de validaciones cuando se asignan las respuestas, pero no todas por simplicidad del código.
-9. En django está instalada la librería `django-cors-headers` que se usa para poder conectarse a la api desde un frontend. De hecho está incluida la ruta `http://localhost:5173` por si en un futuro se desea realizar un front para la aplicación. Si ese front es desplegado, se debe agregar la ruta a `CORS_ORIGIN_WHITELIST` en el archivo `settings.py`.
+6. Cada pregunta debe tener entre 1 y 5 alternativas, si no, arroja error.
+7. Si el estudiante eligió, por ejemplo, la alternativa 5, pero la pregunta tiene 3 alternativas, se cuenta como que **no la respondió**.
+8. Si en la asignación de estudiantes a pruebas o en la asignación de alternativas hay algunos que funcionan y otros que fallan, se optó por usar un _207 Multi Status_ en vez de arrojar error, pues los alumnos que sí existían, sí se asignaron.
+9. Si se asignan respuestas a alumnos que
+10. Se hicieron un par de validaciones cuando se asignan las respuestas, pero no todas por simplicidad del código (Iba a quedar muy engorroso si se validaban todos los campos, pero lo tuve en cuenta).
+11. En django está instalada la librería `django-cors-headers` que se usa para poder conectarse a la api desde un frontend. De hecho está incluida la ruta `http://localhost:5173` por si en un futuro se desea realizar un front para la aplicación. Si ese front es desplegado, se debe agregar la ruta a `CORS_ORIGIN_WHITELIST` en el archivo `settings.py`.
+12. Pensé en hacer un frontend pero en honor al tiempo no lo hice.
+
+## Organización de archivos
+
+En la carpeta `api` se encuentran archivos importantes como `models.py` que contiene los modelos de la DB,`serializer.py` los serializadores de cada modelo, `views.py` las funciones que utiliza cada ruta, en `urls.py` las rutas. También se encuentran las migraciones en la carpeta `migrations`.
+
+En la carpeta `eduapi` se encuentran archivos de configuración como `settings.py`.
+
+En la carpeta `fixtures` se encuentran los datos que serán cargados a la DB cuando la aplicación inicia por primera vez.
+
+El archivo `build.sh` es utilziado en producción para levantar la aplicación.
 
 ## Recomendaciones para los estudiantes
 
