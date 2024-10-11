@@ -103,7 +103,8 @@
     "fields": {
       "content": "3",
       "correct": false,
-      "question": 1
+      "question": 1,
+      "answer_number": 1
     }
   },
   {
@@ -112,7 +113,8 @@
     "fields": {
       "content": "4",
       "correct": true,
-      "question": 1
+      "question": 1,
+      "answer_number": 2
     }
   },
   {
@@ -121,7 +123,8 @@
     "fields": {
       "content": "5",
       "correct": false,
-      "question": 1
+      "question": 1,
+      "answer_number": 3
     }
   },
   {
@@ -130,7 +133,8 @@
     "fields": {
       "content": "2",
       "correct": false,
-      "question": 1
+      "question": 1,
+      "answer_number": 4
     }
   },
   {
@@ -150,7 +154,8 @@
     "fields": {
       "content": "Madrid",
       "correct": false,
-      "question": 2
+      "question": 2,
+      "answer_number": 1
     }
   },
   {
@@ -159,7 +164,8 @@
     "fields": {
       "content": "París",
       "correct": true,
-      "question": 2
+      "question": 2,
+      "answer_number": 2
     }
   },
   {
@@ -168,7 +174,8 @@
     "fields": {
       "content": "Berlín",
       "correct": false,
-      "question": 2
+      "question": 2,
+      "answer_number": 3
     }
   },
   {
@@ -188,7 +195,8 @@
     "fields": {
       "content": "πr^2",
       "correct": true,
-      "question": 3
+      "question": 3,
+      "answer_number": 1
     }
   },
   {
@@ -197,7 +205,8 @@
     "fields": {
       "content": "2πr",
       "correct": false,
-      "question": 3
+      "question": 3,
+      "answer_number": 2
     }
   },
   {
@@ -206,7 +215,8 @@
     "fields": {
       "content": "πd",
       "correct": false,
-      "question": 3
+      "question": 3,
+      "answer_number": 3
     }
   },
   {
@@ -226,7 +236,8 @@
     "fields": {
       "content": "x = 1",
       "correct": false,
-      "question": 4
+      "question": 4,
+      "answer_number": 1
     }
   },
   {
@@ -235,7 +246,8 @@
     "fields": {
       "content": "x = 2",
       "correct": true,
-      "question": 4
+      "question": 4,
+      "answer_number": 2
     }
   },
   {
@@ -244,7 +256,8 @@
     "fields": {
       "content": "x = 3",
       "correct": false,
-      "question": 4
+      "question": 4,
+      "answer_number": 3
     }
   },
   {
@@ -264,7 +277,8 @@
     "fields": {
       "content": "1/52",
       "correct": false,
-      "question": 5
+      "question": 5,
+      "answer_number": 1
     }
   },
   {
@@ -273,7 +287,8 @@
     "fields": {
       "content": "1/13",
       "correct": true,
-      "question": 5
+      "question": 5,
+      "answer_number": 2
     }
   },
   {
@@ -282,7 +297,8 @@
     "fields": {
       "content": "1/26",
       "correct": false,
-      "question": 5
+      "question": 5,
+      "answer_number": 3
     }
   }
 ]

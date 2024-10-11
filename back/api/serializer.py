@@ -1,18 +1,18 @@
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from .models import Student, Test, Question, Alternative
+from .models import Student, StudentTest, Test, Question, Alternative
 
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = "__all__"
+        fields = ["id", "name", "rut"]
 
 
 class AlternativeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alternative
-        fields = ["id", "content", "correct"]
+        fields = ["id", "answer_number", "content", "correct"]
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -62,6 +62,24 @@ class TestSerializer(serializers.ModelSerializer):
             question = Question.objects.create(test=test, **question_data)
 
             for alternative_data in alternatives_data:
-                Alternative.objects.create(question=question, **alternative_data)
+                Alternative.objects.create(
+                    question=question,
+                    answer_number=alternative_data["id"],
+                    **alternative_data
+                )
 
         return test
+
+
+class StudentTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentTest
+        fields = [
+            "id",
+            "student",
+            "test",
+            "score",
+            "correct_answers",
+            "wrong_answers",
+            "skipped_questions",
+        ]

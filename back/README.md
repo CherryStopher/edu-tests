@@ -1,3 +1,6 @@
 - Si la creacion de alguna pregunta falla, o de alguna alternativa, no se crea naada de lo mencionado.
 - Se le deja a Django la creación de ID para las pruebas, preguntas y alternativas.
 - La explicacion de la pregunta puede ser vacía, pues puede no ser necesaria en la prueba.
+- Asumimos que en la app primero se debe asignar el estudiante a una prueba para luego poder asociar las respuestas (en el back esto da lo mismo)
+- Suponemos que en la respuesta del estudiante, el id de la alternativa escogida corresponde al answer_number correspondiente a la pregunta.
+- Si el estudiante eligio por ej la alternativa 5 pero la pregunta tiene 3 preguntas, se cuenta como que no la respondió.

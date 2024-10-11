@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Test, Question, Alternative
+from .models import Student, StudentTest, Test, Question, Alternative
 
 
 class StudentAdmin(admin.ModelAdmin):
@@ -15,10 +15,23 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class AlternativeAdmin(admin.ModelAdmin):
-    list_display = ("id", "content", "correct", "question")
+    list_display = ("id", "answer_number", "content", "correct", "question")
+
+
+class StudentTestAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "student",
+        "test",
+        "score",
+        "correct_answers",
+        "wrong_answers",
+        "skipped_questions",
+    )
 
 
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Test, TestAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Alternative, AlternativeAdmin)
+admin.site.register(StudentTest, StudentTestAdmin)
